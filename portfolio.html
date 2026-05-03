@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ravyendra Singh — GenAI Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root {
+  --bg: #f9f8f5;
+  --surface: #f2f1ec;
+  --text: #181816;
+  --muted: #6a6a62;
+  --faint: #b0afa8;
+  --accent: #1a5c38;
+  --accent-bg: #eaf3ee;
+  --border: #e4e3dc;
+  --border-mid: #ccccc4;
+  --sans: 'DM Sans', sans-serif;
+  --serif: 'Lora', serif;
+  --mono: 'JetBrains Mono', monospace;
+  --max: 760px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15.5px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(249,248,245,0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 clamp(1.5rem, 5vw, 3rem);
+}
+
+.nav-logo {
+  font-family: var(--serif);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  align-items: center;
+}
+
+.nav-links a {
+  font-size: 13.5px;
+  font-weight: 400;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+  letter-spacing: 0.01em;
+}
+
+.nav-links a:hover { color: var(--text); }
+
+.nav-links .cta {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+/* ── LAYOUT ── */
+main {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 5vw, 2rem);
+}
+
+section {
+  padding: 5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+section:last-of-type { border-bottom: none; }
+
+/* ── HERO ── */
+#hero {
+  padding-top: 9rem;
+  padding-bottom: 5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.availability-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  font-family: var(--mono);
+  color: var(--accent);
+  background: var(--accent-bg);
+  border: 1px solid #b8dcc7;
+  border-radius: 100px;
+  padding: 4px 12px;
+  margin-bottom: 2rem;
+  letter-spacing: 0.02em;
+}
+
+.availability-pill::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,100%{opacity:1} 50%{opacity:0.4}
+}
+
+.hero-title {
+  font-family: var(--serif);
+  font-size: clamp(2.4rem, 5vw, 3.4rem);
+  font-weight: 600;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.25rem;
+  color: var(--text);
+}
+
+.hero-title em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.hero-desc {
+  font-size: 16px;
+  color: var(--muted);
+  max-width: 560px;
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+
+.stat { display: flex; flex-direction: column; }
+
+.stat-num {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1;
+  margin-bottom: 3px;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: var(--faint);
+  font-family: var(--mono);
+  letter-spacing: 0.04em;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 22px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.2s;
+  font-family: var(--sans);
+}
+
+.btn-primary {
+  background: var(--text);
+  color: var(--bg);
+  border: 1px solid var(--text);
+}
+
+.btn-primary:hover {
+  background: #2a2a26;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border-mid);
+}
+
+.btn-ghost:hover {
+  border-color: var(--text);
+  background: var(--surface);
+}
+
+/* ── SECTION HEADERS ── */
+.section-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin-bottom: 0.5rem;
+}
+
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-bottom: 0.6rem;
+}
+
+.section-title em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.section-sub {
+  font-size: 14.5px;
+  color: var(--muted);
+  margin-bottom: 3rem;
+  max-width: 500px;
+}
+
+/* ── EXPERIENCE ── */
+.exp-list { display: flex; flex-direction: column; gap: 2.5rem; }
+
+.exp-card {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+.exp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.exp-company {
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--text);
+}
+
+.exp-badge {
+  font-size: 11px;
+  font-family: var(--mono);
+  color: var(--accent);
+  background: var(--accent-bg);
+  border: 1px solid #b8dcc7;
+  border-radius: 4px;
+  padding: 2px 8px;
+  white-space: nowrap;
+}
+
+.exp-role {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 0.25rem;
+}
+
+.exp-period {
+  font-size: 12px;
+  font-family: var(--mono);
+  color: var(--faint);
+  margin-bottom: 1rem;
+}
+
+.exp-bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-left: 0;
+}
+
+.exp-bullets li {
+  font-size: 14px;
+  color: var(--muted);
+  padding-left: 1.2rem;
+  position: relative;
+  line-height: 1.65;
+}
+
+.exp-bullets li::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.3;
+}
+
+.exp-bullets strong {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.exp-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin-top: 2.5rem;
+}
+
+/* ── PROJECTS ── */
+.projects-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.project-item {
+  display: grid;
+  grid-template-columns: 48px 1fr auto;
+  gap: 0 1rem;
+  align-items: start;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--border);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s;
+}
+
+.project-item:first-child { border-top: 1px solid var(--border); }
+
+.project-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--faint);
+  padding-top: 3px;
+  letter-spacing: 0.05em;
+}
+
+.project-name {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.project-desc {
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.tag {
+  font-size: 11px;
+  font-family: var(--mono);
+  color: var(--muted);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2px 8px;
+}
+
+.project-arrow {
+  font-size: 14px;
+  color: var(--faint);
+  padding-top: 3px;
+  transition: color 0.2s, transform 0.2s;
+}
+
+.project-item:hover .project-arrow {
+  color: var(--accent);
+  transform: translate(2px, -2px);
+}
+
+/* ── STACK ── */
+.stack-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.stack-cell {
+  background: var(--bg);
+  padding: 1.25rem 1.5rem;
+}
+
+.stack-cat {
+  font-size: 11px;
+  font-family: var(--mono);
+  color: var(--faint);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+}
+
+.stack-items {
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+/* ── EDUCATION ── */
+.edu-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.edu-degree {
+  font-weight: 500;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.edu-school {
+  font-size: 13.5px;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.edu-period {
+  font-size: 12px;
+  font-family: var(--mono);
+  color: var(--faint);
+}
+
+.edu-stat {
+  text-align: right;
+}
+
+.edu-num {
+  font-family: var(--serif);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.edu-num-label {
+  font-size: 11px;
+  font-family: var(--mono);
+  color: var(--faint);
+  margin-top: 4px;
+}
+
+/* ── CONTACT ── */
+#contact {
+  border-bottom: none;
+  padding-bottom: 2rem;
+}
+
+.contact-inner {
+  max-width: 500px;
+}
+
+.contact-title {
+  font-family: var(--serif);
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.contact-title em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.contact-desc {
+  font-size: 14.5px;
+  color: var(--muted);
+  margin-bottom: 2rem;
+  line-height: 1.8;
+}
+
+.contact-links {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 3rem clamp(1.5rem, 5vw, 2rem);
+  max-width: var(--max);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-name {
+  font-family: var(--serif);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.footer-links {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+}
+
+.footer-links a {
+  font-size: 13px;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover { color: var(--text); }
+
+.footer-copy {
+  font-size: 12px;
+  color: var(--faint);
+  width: 100%;
+  font-family: var(--mono);
+}
+
+/* ── FADE IN ── */
+.fade-in {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (max-width: 600px) {
+  .nav-links { gap: 1rem; }
+  .hero-stats { gap: 1.5rem; }
+  .project-item { grid-template-columns: 36px 1fr auto; }
+  .edu-stat { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">Ravyendra Singh</a>
+  <ul class="nav-links">
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#stack">Stack</a></li>
+    <li><a href="mailto:multiverseofgr@gmail.com" class="cta">Say hello →</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="availability-pill">Open to opportunities</div>
+    <h1 class="hero-title">GenAI engineer.<br><em>Shipping LLM systems.</em></h1>
+    <p class="hero-desc">
+      2 years of production experience building RAG pipelines, multi-agent orchestration, fine-tuning workflows, and cloud-deployed AI — end to end. Turning research into reliable products.
+    </p>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num">2+</span>
+        <span class="stat-label">Years Experience</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">70%</span>
+        <span class="stat-label">Migration Effort Saved</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">94%</span>
+        <span class="stat-label">Router Accuracy</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">Bengaluru</span>
+        <span class="stat-label">Based In</span>
+      </div>
+    </div>
+    <div class="hero-actions">
+      <a href="#experience" class="btn btn-primary">View My Work →</a>
+      <a href="mailto:multiverseofgr@gmail.com" class="btn btn-ghost">Get in Touch</a>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <p class="section-label">Experience</p>
+    <h2 class="section-title">Selected <em>work.</em></h2>
+    <p class="section-sub">Production AI shipped to real engineering teams.</p>
+
+    <div class="exp-list">
+
+      <div class="exp-card fade-in">
+        <div class="exp-header">
+          <span class="exp-company">Wipro</span>
+          <span class="exp-badge">Current</span>
+        </div>
+        <div class="exp-role">Gen AI Engineer · Bengaluru</div>
+        <div class="exp-period">Oct 2024 — Present</div>
+        <ul class="exp-bullets">
+          <li>Designed <strong>Reframe.ai</strong>, a 5-phase prompt-chained legacy code modernisation pipeline generalised across Oracle Forms, COBOL, PL/SQL, VB6 → Java/Spring Boot, Python, .NET — cutting manual migration effort by an estimated <strong>70%</strong> on pilot codebases.</li>
+          <li>Introduced a <strong>structured JSON Knowledge Library</strong> extraction stage before code generation plus a Reflexion-style self-critique loop (generate → critique → refine), lifting end-to-end correctness from <strong>~70% to ~90%</strong>.</li>
+          <li>Solved context-window overflow for <strong>10K+ line files</strong> via token-aware chunking with a <code>chunks.csv</code> manifest, reducing hallucinated cross-references by <strong>~60%</strong>.</li>
+          <li>Productized with <strong>Streamlit UI</strong>, YAML-driven config, ThreadPoolExecutor parallelism, phase-level resumability, and opt-in sub-pipelines (Validation, BRD/User Stories, UML, Executive Summary); delivered to client engineering teams.</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <p class="section-label">Projects</p>
+    <h2 class="section-title">Side <em>work.</em></h2>
+    <p class="section-sub">Production-grade builds deployed independently.</p>
+
+    <div class="projects-grid">
+
+      <a href="https://github.com/multiverseofshiv" target="_blank" class="project-item fade-in">
+        <span class="project-num">01</span>
+        <div>
+          <div class="project-name">DocMind</div>
+          <div class="project-desc">Multi-tenant RAG system with hybrid retrieval (BM25 + dense + RRF) and BGE cross-encoder reranking — recall@5 lifted from 0.71 → 0.86 on a 50-question golden set. Redis semantic cache cut LLM cost by 55% and p95 latency from 3.2s → 2.1s. RAGAS eval (faithfulness 0.87, context precision 0.83) runs in CI on every PR.</div>
+          <div class="project-tags">
+            <span class="tag">FastAPI</span>
+            <span class="tag">LangChain</span>
+            <span class="tag">Qdrant</span>
+            <span class="tag">Redis</span>
+            <span class="tag">BGE</span>
+            <span class="tag">RAGAS</span>
+            <span class="tag">Docker</span>
+          </div>
+        </div>
+        <span class="project-arrow">↗</span>
+      </a>
+
+      <a href="https://github.com/multiverseofshiv" target="_blank" class="project-item fade-in">
+        <span class="project-num">02</span>
+        <div>
+          <div class="project-name">AgentForge</div>
+          <div class="project-desc">LangGraph HITL multi-agent system — Supervisor routes to Researcher / Writer / Reviewer / SQL agents with a writer-reviewer critic loop (max 3 iterations). QLoRA fine-tuned Phi-3-mini router (Unsloth, rank-16) on 500 synthetic queries: intent accuracy 78% → 94% at 12× lower cost than GPT-4o routing. Live trajectory streamed via FastAPI WebSocket.</div>
+          <div class="project-tags">
+            <span class="tag">LangGraph</span>
+            <span class="tag">QLoRA</span>
+            <span class="tag">Unsloth</span>
+            <span class="tag">Ollama</span>
+            <span class="tag">FastAPI</span>
+            <span class="tag">WebSockets</span>
+            <span class="tag">CrewAI</span>
+          </div>
+        </div>
+        <span class="project-arrow">↗</span>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- STACK -->
+  <section id="stack">
+    <p class="section-label">Stack</p>
+    <h2 class="section-title">Tools I <em>work with.</em></h2>
+    <p class="section-sub">The ecosystem I live in day to day.</p>
+
+    <div class="stack-grid fade-in">
+      <div class="stack-cell">
+        <div class="stack-cat">GenAI / LLM</div>
+        <div class="stack-items">LangChain (LCEL), LangGraph, CrewAI, LlamaIndex, Azure OpenAI, Gemini (Vertex AI), Groq, Ollama</div>
+      </div>
+      <div class="stack-cell">
+        <div class="stack-cat">RAG & Retrieval</div>
+        <div class="stack-items">Hybrid search (Dense + BM25 + RRF), BGE cross-encoder reranking, HyDE, multi-query rewriting, RAGAS</div>
+      </div>
+      <div class="stack-cell">
+        <div class="stack-cat">Fine-Tuning</div>
+        <div class="stack-items">QLoRA (Unsloth, rank-16), PEFT, TRL SFTTrainer, HuggingFace, GGUF export & Ollama serving</div>
+      </div>
+      <div class="stack-cell">
+        <div class="stack-cat">Vector DBs</div>
+        <div class="stack-items">Qdrant (multi-tenant), FAISS, ChromaDB, pgvector</div>
+      </div>
+      <div class="stack-cell">
+        <div class="stack-cat">Frameworks & APIs</div>
+        <div class="stack-items">Python, FastAPI, Pydantic, SQLAlchemy, Streamlit, SSE & WebSocket streaming</div>
+      </div>
+      <div class="stack-cell">
+        <div class="stack-cat">LLMOps & DevOps</div>
+        <div class="stack-items">LangSmith, Langfuse (self-hosted), Redis semantic cache, Docker, GitHub Actions, Azure Container Apps, Render, HF Spaces</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <p class="section-label">Education</p>
+    <h2 class="section-title">Formal <em>training.</em></h2>
+
+    <div class="edu-card fade-in">
+      <div>
+        <div class="edu-degree">B.Tech in Electrical Engineering</div>
+        <div class="edu-school">United College of Engineering and Research, Prayagraj</div>
+        <div class="edu-period">Aug 2018 — Jun 2022</div>
+      </div>
+      <div class="edu-stat">
+        <div class="edu-num">7.9</div>
+        <div class="edu-num-label">GPA / 10</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-inner">
+      <p class="section-label">Contact</p>
+      <h2 class="contact-title">Let's <em>build together.</em></h2>
+      <p class="contact-desc">
+        RAG pipelines. Agentic workflows. LLM fine-tuning. Legacy modernisation. If you're shipping AI and want someone who's done it in production — reach out.
+      </p>
+      <div class="contact-links">
+        <a href="mailto:multiverseofgr@gmail.com" class="btn btn-primary">Get in Touch →</a>
+        <a href="https://linkedin.com/in/ravyendra" class="btn btn-ghost" target="_blank">LinkedIn →</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-name">Ravyendra Singh</span>
+  <ul class="footer-links">
+    <li><a href="https://github.com/multiverseofshiv" target="_blank">GitHub</a></li>
+    <li><a href="https://www.linkedin.com/in/ravyendra-singh/" target="_blank">LinkedIn</a></li>
+    <li><a href="mailto:multiverseofgr@gmail.com">Email</a></li>
+  </ul>
+  <span class="footer-copy">© 2025 Ravyendra Singh · Bengaluru</span>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-in').forEach((el, i) => {
+  el.style.transitionDelay = (i % 4) * 80 + 'ms';
+  observer.observe(el);
+});
+
+// Active nav link on scroll
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 100) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.style.color = a.getAttribute('href') === '#' + current ? 'var(--text)' : '';
+  });
+});
+</script>
+</body>
+</html>
